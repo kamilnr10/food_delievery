@@ -11,6 +11,7 @@ export const localRestaurants = [
     price: "$$",
     reviews: 1244,
     rating: 4.5,
+    transactions: ["delivery"],
   },
   {
     name: "Benihana",
@@ -20,6 +21,7 @@ export const localRestaurants = [
     price: "$$",
     reviews: 1244,
     rating: 3.7,
+    transactions: ["delivery", "pickup"],
   },
   {
     name: "India's Grill",
@@ -29,11 +31,11 @@ export const localRestaurants = [
     price: "$$",
     reviews: 700,
     rating: 4.9,
+    transactions: ["delivery", "pickup"],
   },
 ];
 
 export default function RestaurantItems(props) {
-  console.log(props.restaurantData);
   return (
     <TouchableOpacity activeOpacity={1} style={{ marginBottom: 30 }}>
       {props.restaurantData.map((restaurant, index) => (
