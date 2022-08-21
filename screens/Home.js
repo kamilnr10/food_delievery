@@ -25,13 +25,17 @@ export default function Home() {
 
     return fetch(yelpUrl, apiOptions)
       .then((res) => res.json())
-      .then((json) =>
+      .then((json) => {
+        console.log(json.businesses);
+
         setRestaurantData(
-          json.businesses.filter((businesses) =>
-            businesses.transactions.includes(activeTab.toLowerCase())
-          )
-        )
-      );
+          json.businesses.transactions
+            ? json.businesses.filter((businesses) =>
+                businesses.transactions.includes(activeTab.toLowerCase())
+              )
+            : json.businesses
+        );
+      });
   };
 
   useEffect(() => {
