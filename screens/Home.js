@@ -6,6 +6,8 @@ import Categories from "../components/Categories";
 import RestaurantItems from "../components/RestaurantItems";
 import { localRestaurants } from "../components/RestaurantItems";
 import { APP_YELP_API } from "@env";
+import { Divider } from "react-native-elements/dist/divider/Divider";
+import BottomTabs from "../components/BottomTabs";
 
 export default function Home() {
   const [restaurantData, setRestaurantData] = useState(localRestaurants);
@@ -46,6 +48,8 @@ export default function Home() {
         <Categories />
         <RestaurantItems restaurantData={restaurantData} />
       </ScrollView>
+      <Divider width={1} />
+      <BottomTabs />
     </SafeAreaView>
   );
 }
