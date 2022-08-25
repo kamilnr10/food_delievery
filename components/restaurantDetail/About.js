@@ -1,17 +1,35 @@
 import React from "react";
 import { View, Text, Image, findNodeHandle } from "react-native";
 
-const image =
-  "https://media.gettyimages.com/photos/cozy-restaurant-for-gathering-with-friends-picture-id1159992039?s=612x612";
+const yelpRestaurantInfo = {
+  name: "Farmhouse Kitchen Thai Cuisine",
+  image:
+    "https://media.gettyimages.com/photos/cozy-restaurant-for-gathering-with-friends-picture-id1159992039?s=612x612",
+  price: "$$",
+  reviews: "1500",
+  rating: 5,
+  categories: [{ title: "Thai" }, { title: "Comfort Food" }],
+};
+
+const { name, image, price, reviews, rating, categories } = yelpRestaurantInfo;
+
+const formattedCategories = categories.map((eat) => eat.title).join(" ° ");
+
+const description = `${formattedCategories} ${
+  price ? " ° " : ""
+} ° 🎫 ° ${rating} ⭐ (${reviews}+)`;
+
+// const image =
+//   "https://media.gettyimages.com/photos/cozy-restaurant-for-gathering-with-friends-picture-id1159992039?s=612x612";
 
 const title = "Farmhouse Kitchen Thai Cuisine";
-const description = "Thai ° Comfort Food ° $$ ° 4 ° 🎫 ° 4 ⭐ (2913+)";
+//const description = "Thai ° Comfort Food ° $$ ° 4 ° 🎫 ° 4 ⭐ (2913+)";
 
 export default function About() {
   return (
     <View>
       <RestaurantImage image={image} />
-      <RestaurantTitle title={title} />
+      <RestaurantName name={name} />
       <RestaurantDescription description={description} />
     </View>
   );
@@ -21,7 +39,7 @@ const RestaurantImage = (props) => (
   <Image source={{ uri: props.image }} style={{ width: "100%", height: 180 }} />
 );
 
-const RestaurantTitle = (props) => {
+const RestaurantName = ({ name }) => {
   return (
     <Text
       style={{
@@ -31,12 +49,12 @@ const RestaurantTitle = (props) => {
         marginHorizontal: 15,
       }}
     >
-      {props.title}
+      {name}
     </Text>
   );
 };
 
-const RestaurantDescription = (props) => (
+const RestaurantDescription = ({ description }) => (
   <Text
     style={{
       marginTop: 10,
@@ -45,6 +63,6 @@ const RestaurantDescription = (props) => (
       fontSize: 15.5,
     }}
   >
-    {props.description}
+    {description}
   </Text>
 );

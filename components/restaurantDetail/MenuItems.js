@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import { Divider } from "react-native-elements/dist/divider/Divider";
 
 const foods = [
   {
@@ -43,10 +44,17 @@ const foods = [
 
 export default function MenuItems() {
   return (
-    <View style={styles.menuItemStyle}>
-      <FoodInfo food={foods[0]} />
-      <FoodImage food={foods[0]} />
-    </View>
+    <ScrollView showsVerticalScrollIndicator={false}>
+      {foods.map((food, index) => (
+        <View key={index}>
+          <View style={styles.menuItemStyle}>
+            <FoodInfo food={food} />
+            <FoodImage food={food} />
+          </View>
+          <Divider width={0.5} orientation="vertical" />
+        </View>
+      ))}
+    </ScrollView>
   );
 }
 
@@ -62,21 +70,18 @@ const styles = StyleSheet.create({
   },
 });
 
-const FoodInfo = (props) => {
+const FoodInfo = ({ food }) => {
   return (
     <View style={{ width: 240, justifyContent: "space-evenly" }}>
-      <Text style={styles.titleStyle}>{props.food.title}</Text>
-      <Text>{props.food.description}</Text>
-      <Text>{props.food.price}</Text>
+      <Text style={styles.titleStyle}>{food.title}</Text>
+      <Text>{food.description}</Text>
+      <Text>{food.price}</Text>
     </View>
   );
 };
 
-const FoodImage = (props) => (
+const FoodImage = ({ food }) => (
   <View>
-    <Image
-      source={{ uri: props.food.image }}
-      style={{ width: 100, height: 100 }}
-    />
+    <Image source={{ uri: food.image }} style={{ width: 100, height: 100 }} />
   </View>
 );
