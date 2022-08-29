@@ -11,21 +11,22 @@ const yelpRestaurantInfo = {
   categories: [{ title: "Thai" }, { title: "Comfort Food" }],
 };
 
-const { name, image, price, reviews, rating, categories } = yelpRestaurantInfo;
-
-const formattedCategories = categories.map((eat) => eat.title).join(" ° ");
-
-const description = `${formattedCategories} ${
-  price ? " ° " : ""
-} ° 🎫 ° ${rating} ⭐ (${reviews}+)`;
-
 // const image =
 //   "https://media.gettyimages.com/photos/cozy-restaurant-for-gathering-with-friends-picture-id1159992039?s=612x612";
 
 const title = "Farmhouse Kitchen Thai Cuisine";
 //const description = "Thai ° Comfort Food ° $$ ° 4 ° 🎫 ° 4 ⭐ (2913+)";
 
-export default function About() {
+export default function About(props) {
+  const { name, image, price, reviews, rating, categories } =
+    props.route.params;
+
+  const formattedCategories = categories.map((eat) => eat.title).join(" ° ");
+
+  const description = `${formattedCategories} ${
+    price ? " ° " : ""
+  } ° 🎫 ° ${rating} ⭐ (${reviews}+)`;
+
   return (
     <View>
       <RestaurantImage image={image} />
